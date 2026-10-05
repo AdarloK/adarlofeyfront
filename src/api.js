@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 // All requests go to the LavaLust API. The frontend never talks to the database.
-export const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3000').replace(/\/$/, '');
+export const API_URL = (
+  import.meta.env.VITE_API_URL || 'https://adarlofeyback.onrender.com'
+).replace(/\/$/, '');
 
 const KEYS = { access: 'pm_access_token', refresh: 'pm_refresh_token', user: 'pm_user' };
 
