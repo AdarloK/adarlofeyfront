@@ -1,8 +1,12 @@
 import axios from 'axios';
 
 // All requests go to the LavaLust API. The frontend never talks to the database.
+const configuredApiUrl = (import.meta.env.VITE_API_URL || '').trim();
+const isGitHubRepositoryUrl = /^https?:\/\/(www\.)?github\.com(?:\/|$)/i.test(configuredApiUrl);
 export const API_URL = (
-  import.meta.env.VITE_API_URL || 'https://adarlofeyback.onrender.com'
+  isGitHubRepositoryUrl || !configuredApiUrl
+    ? 'https://adarlofeyback.onrender.com'
+    : configuredApiUrl
 ).replace(/\/$/, '');
 
 const KEYS = { access: 'pm_access_token', refresh: 'pm_refresh_token', user: 'pm_user' };
